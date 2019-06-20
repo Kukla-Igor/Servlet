@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "ITEM")
 public class Item {
-    @JsonIgnore
+    @JsonProperty("id")
     private long id;
     @JsonProperty("name")
     private String name;

@@ -16,10 +16,14 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/test")
 public class ItemController extends HttpServlet {
     ItemService itemService = new ItemService();
+    Item item;
 
     @Override
     protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.getWriter().println(req.getParameter("param"));
+        try (BufferedReader br = req.getReader()) {
+            item = toJavaObject(br);
+            System.out.println(itemService.doGet(item.getId()));
+        }
     }
 
     @Override
@@ -28,26 +32,26 @@ public class ItemController extends HttpServlet {
 
         try (BufferedReader br = req.getReader()) {
             item = toJavaObject(br);
-            itemService.doPost(item);
+            System.out.println(itemService.doPost(item));
         }
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try (BufferedReader br = req.getReader()) {
+            item = toJavaObject(br);
+            System.out.println(itemService.doPut(item));
+        }
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try (BufferedReader br = req.getReader()) {
+            item = toJavaObject(br);
+            itemService.doDelete(item.getId());
+        }
     }
 
-//    private static Item toJavaObject(BufferedReader br) {
-//
-//        Gson gson = new Gson();
-//
-//        return gson.fromJson(br, Item.class);
-//    }
 
     public static Item toJavaObject(BufferedReader br) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

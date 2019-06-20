@@ -39,11 +39,13 @@
             <version>5.2.12.Final</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc7</artifactId>-->
-            <!--<version>12.1.0.2</version>-->
-        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc7 -->
+        <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc7</artifactId>
+        <version>12.1.0.2</version>
+    </dependency>
+
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -63,11 +65,5 @@
 
     </dependencies>
 
-    <!--<repositories>-->
-    <!--<repository>-->
-        <!--<id>maven2</id>-->
-        <!--<url>http://repo1.maven.org/maven2</url>-->
-    <!--</repository>-->
-<!--</repositories>-->
 
 </project>
